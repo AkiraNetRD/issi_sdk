@@ -1,0 +1,7 @@
+#define CG_VERSION              3.2.15
+#define CG_MAIN_VERSION         3
+#define CG_MAIN_VERSION_SZ      "3"
+#define CG_MINOR_VERSION        2
+#define CG_MINOR_VERSION_SZ     "2"
+#define CG_SUB_VERSION          15
+#define CG_SUB_VERSION_SZ       "15"

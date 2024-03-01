@@ -1,0 +1,34 @@
+######################################################################
+# Compiler / Cross-Compiler Declarations:                            #
+######################################################################
+include ../../CompilerDeclaration
+
+######################################################################
+# Other Declarations:                                                #
+######################################################################
+LIBPATH  =  ../../bin
+INCLUDE  = ../../include
+INCLUDE_HTTP_LIB        = "../../common/HTTP_LIB/inc"
+INCLUDE_LIB_COMMON      = "../../common/common/inc"
+INCLUDE_LIB_GHN_LIB   = "../../GHN_LIB/inc"
+INCLUDE_LIB_CMD_HELPERS = "../../common/CMD_Helpers/inc"
+INCLUDE_XML_Parser      = "../../common/XMLParser/inc"
+
+CFLAGS = -Wall $(CROSS_CFLAGS)
+CPPFLAGS = $(CROSS_CPPFLAGS) -I $(INCLUDE) -I $(INCLUDE_HTTP_LIB) -I $(INCLUDE_LIB_COMMON) -I $(INCLUDE_LIB_GHN_LIB) -I $(INCLUDE_LIB_CMD_HELPERS) -I $(INCLUDE_XML_Parser)
+TARGET = $(LIBPATH)/$(TARGET_NAME)
+
+LIBS = $(LIBPATH)/CMD_Helpers.a $(LIBPATH)/GHN_LIB.a $(LIBPATH)/Image_LIB.a $(LIBPATH)/console.a $(LIBPATH)/HTTP_LIB.a $(LIBPATH)/libcurl.a $(LIBPATH)/XMLParser.a $(LIBPATH)/libmxml.a $(LIBPATH)/common.a $(LIBPATH)/MD5.a -lm -lpthread
+
+SRC = $(SRC_FILES)
+OBJ = $(addsuffix .o, $(basename $(SRC)))
+
+.c.o: 
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $(DEBUG) -o $@ $<
+
+all : $(OBJ)
+	$(CC) $(CFLAGS) $(DEBUG) -o $(TARGET) $(OBJ) $(LIBS) $(CROSS_LIBS)
+
+clean: 
+	rm -r $(OBJ)
+	rm -f $(TARGET)

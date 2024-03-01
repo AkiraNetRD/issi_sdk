@@ -1,0 +1,64 @@
+##########################################
+# Compiler / Cross-Compiler Declarations #
+##########################################
+
+
+######################################################################
+# Compiler for x86 (32-bit,Little-Endian,Floating-Point)             #
+######################################################################
+ARM_ROOT       =
+CROSS          =
+CROSS_HOST     =
+CROSS_CFLAGS   = -m32
+CROSS_CPPFLAGS =
+CROSS_LIBS     = -lrt
+CROSS_DEBUG    =
+
+######################################################################
+# Cross-Compiler for MIPS R3000 (Big-Endian,Fix-Point)               #
+######################################################################
+# MIPS_ROOT      = /usr/local/toolchain-mips_gcc4.1.2
+# CROSS          = $(MIPS_ROOT)/bin/mips-linux-uclibc-
+# CROSS_HOST     = --host=mips-linux
+# CROSS_CFLAGS   = 
+# CROSS_CPPFLAGS = -DBIG_ENDIAN_MACHINE
+# CROSS_LIBS     =
+# CROSS_DEBUG    =
+
+######################################################################
+# Cross-Compiler for ARM arm920t (Little-Endian,Floating-Point)      #
+# Processor       : ARM920Tid(wb) rev 0 (v4l)                        #
+# Using gcc 3.4.1                                                    #
+######################################################################
+# ARM_ROOT       = /usr/local/arm/3.4.1
+# CROSS          = $(ARM_ROOT)/bin/arm-linux-
+# CROSS_HOST     = --host=arm-linux
+# CROSS_CFLAGS   = -mcpu=arm920t
+# CROSS_CPPFLAGS =
+# CROSS_LIBS     =
+# CROSS_DEBUG    =
+
+######################################################################
+# Cross-Compiler for ARM arm920t (Little-Endian,Floating-Point)      #
+# Processor       : ARM920T rev 0 (v4l)                              #
+# Using gcc 4.3.2                                                    #
+######################################################################
+# ARM_ROOT       = /usr/local/arm/4.3.2
+# CROSS          = $(ARM_ROOT)/bin/arm-none-linux-gnueabi-
+# CROSS_HOST     = --host=arm-none-linux-gnueabi
+# CROSS_CFLAGS   = -march=armv4t -mcpu=arm920t
+# CROSS_CPPFLAGS =
+# CROSS_LIBS     = -lrt
+# CROSS_DEBUG    =
+
+###############################
+# Common Declarations         #
+###############################
+CC             = $(CROSS)gcc
+AR             = $(CROSS)ar
+ARFLAGS        = rcs
+
+CFLAGS         = $(CROSS_CFLAGS)
+CPPFLAGS       = $(CROSS_CPPFLAGS)
+DEBUG          = $(CROSS_DEBUG)
+

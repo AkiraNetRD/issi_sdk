@@ -1,0 +1,11 @@
+﻿  mxml-string.c
+  mxml-set.c
+  mxml-search.c
+  mxml-private.c
+  mxml-node.c
+  mxml-index.c
+  mxml-file.c
+  mxml-entity.c
+  mxml-attr.c
+  Generating Code...
+  mxml.vcxproj -> C:\work_golan\5111\tools\Tools [Develop]\SDK\\bin\Debug\mxml.lib
