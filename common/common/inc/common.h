@@ -10,7 +10,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <time.h>
-#include <termio.h>
+#include <termios.h>
 #include <ctype.h>
 #endif 
 
