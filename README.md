@@ -4,6 +4,7 @@ This repository is a submodule for who wants to use ISSI sdk
 [How to setup build environment]
 
 Modify ./CompilerDeclaration as following block
+
 ###############################
 # Common Declarations         #
 ###############################
