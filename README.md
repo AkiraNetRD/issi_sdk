@@ -8,6 +8,7 @@ Modify ./CompilerDeclaration as following block
 ###############################
 # Common Declarations         #
 ###############################
+
 CC             = $(CROSS)gcc
 AR             = $(CROSS)ar
 ARFLAGS        = rcs
@@ -20,6 +21,7 @@ DEBUG          = $(CROSS_DEBUG)
 ###############################
 # Common Declarations         #
 ###############################
+
 ARM_ROOT       = /openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl
 CROSS          = $(ARM_ROOT)/bin/aarch64-openwrt-linux-
 CROSS_HOST     = --host=aarch64-openwrt-linux
