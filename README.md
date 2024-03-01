@@ -3,8 +3,9 @@ This repository is a submodule for who wants to use ISSI sdk
 
 ### [How to setup build environment]
 
-Modify ./CompilerDeclaration as following block
+Modify ./CompilerDeclaration as following block (make sure your toolchain path)
 
+```
 ###############################
 # Common Declarations         #
 ###############################
@@ -16,8 +17,9 @@ ARFLAGS        = rcs
 CFLAGS         = $(CROSS_CFLAGS)
 CPPFLAGS       = $(CROSS_CPPFLAGS)
 DEBUG          = $(CROSS_DEBUG)
-
-----------------------------------------------
+```
+#
+```
 ###############################
 # Common Declarations         #
 ###############################
@@ -37,4 +39,4 @@ ARFLAGS        = rcs
 CFLAGS         = $(CROSS_CFLAGS)
 CPPFLAGS       = $(CROSS_CPPFLAGS)
 DEBUG          = $(CROSS_DEBUG)
-
+```
