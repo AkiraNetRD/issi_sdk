@@ -61,13 +61,16 @@ typedef struct _PhyRateData {
 #pragma pack(pop)
 
 int isDM(void);
+int getDmGhnMac(char *mac);
+int getLocalGhnMac(char *mac);
 int grabNeighborCount(void);
 int grabLocalDeviceInfo(struct _GhnDeviceInfo *deviceInfo);
 int grabAllDeviceInfo(struct _GhnDeviceInfo devInfoAry[], int arraySize);
+
 int resetDevice(char *target);
 int restoreFactoryDefault(char *target);
-int getPhyRateTable(struct _PhyRateData *prData);
 int firmwareUpdate(void);
+
 int getNetworkEncryptionMode(char *target);
 int setNetworkEncryptionMode(char *target, int mode);
 int getNetworkDevicePassword(char *target, char *password);
@@ -76,6 +79,8 @@ int getNetworkDomainName(char *target, char *domainName);
 int setNetworkDomainName(char *target, char *domainName);
 int getDeviceName(char *target, char *name);
 int setDeviceName(char *target, char *name);
+
+int getPhyRate(struct _PhyRateData *prData, char *saMac);
 
 #ifdef __cplusplus
 }

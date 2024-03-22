@@ -39,6 +39,98 @@ int isDM(void)
     return STATUS_CODE_UNKNOWN_ERROR;
 }
 
+int getDmGhnMac(char *mac)
+{
+	INIT_SDK_VARIABLE;
+	int findDM = 0;
+
+	if (CMDHelpers_GetStation(bHasDeviceIP,strDeviceIP,bHasAdapterIP,strAdapterIP,
+	                          bHasDeviceMac,strDeviceMAC,FALSE,FALSE,&getstation) == FALSE) {
+		return STATUS_CODE_ISSI_API_FAILE;
+	}
+
+	sDevice_Information			devinf;
+	for (int i = 1; i <= getstation.Size; i++) {
+		memset(&devinf, 0x00, sizeof(sDevice_Information));
+
+		devinf.Connection.bHasDeviceIP = TRUE;
+		strcpy(devinf.Connection.DeviceIP,getstation.sStationArray[i-1].DeviceIP);
+		strcpy(devinf.Connection.SelectedNetworkCardIP, getstation.Connection.SelectedNetworkCardIP);
+		
+		devinf.bAdvanced = FALSE;
+
+		if (Ghn_Get_Device_Information(&devinf) != eGHN_LIB_STAT_SUCCESS) {
+			printf("Failed to get device information from MAC %s\n", getstation.sStationArray[i-1].DeviceMAC);
+			continue;
+		}
+
+		for (int j=1; j <= devinf.Size; j++) {
+			if (strcmp(devinf.AttributeArray[j].Name, GHN_ATTR_GHN_MAC) == 0) {
+				memset(mac, 0, 18);
+				strcpy(mac, devinf.AttributeArray[j].Value);
+			}
+
+			if (strcmp(devinf.AttributeArray[j].Name, GHN_ATTR_NODE_TYPE) == 0) {
+				if (strcmp(devinf.AttributeArray[j].Value, "DM") == 0) {
+					findDM = 1;
+					break;
+				}
+			}
+		}
+
+		if (findDM) {
+			break;
+		}
+	}
+
+	if (0 == findDM) {
+		memset(mac, 0, 18);
+	}
+
+    return STATUS_CODE_OK;
+}
+
+int getLocalGhnMac(char *mac)
+{
+	INIT_SDK_VARIABLE;
+
+	if (CMDHelpers_GetStation(bHasDeviceIP,strDeviceIP,bHasAdapterIP,strAdapterIP,
+	                          bHasDeviceMac,strDeviceMAC,FALSE,TRUE,&getstation) == FALSE) {
+		return STATUS_CODE_ISSI_API_FAILE;
+	}
+
+	sDevice_Information			devinf;
+	for (int i = 1; i <= getstation.Size; i++) {
+		memset(&devinf, 0x00, sizeof(sDevice_Information));
+
+		devinf.Connection.bHasDeviceIP = TRUE;
+		strcpy(devinf.Connection.DeviceIP,getstation.sStationArray[i-1].DeviceIP);
+		strcpy(devinf.Connection.SelectedNetworkCardIP, getstation.Connection.SelectedNetworkCardIP);
+		
+		devinf.bAdvanced = FALSE;
+
+		if (Ghn_Get_Device_Information(&devinf) != eGHN_LIB_STAT_SUCCESS) {
+			printf("Failed to get device information from MAC %s\n", getstation.sStationArray[i-1].DeviceMAC);
+			continue;
+		}
+
+		for (int j=1; j <= devinf.Size; j++) {
+			if (strcmp(devinf.AttributeArray[j].Name, GHN_ATTR_GHN_MAC) == 0) {
+				if (getstation.sStationArray[i-1].bLocalDevice) {
+					strcpy(mac, devinf.AttributeArray[j].Value);
+					break;
+				}
+			}
+		}
+
+		if (getstation.sStationArray[i-1].bLocalDevice) {
+			break;
+		}
+	}
+
+    return STATUS_CODE_OK;
+}
+
 int grabNeighborCount(void)
 {
 	INIT_SDK_VARIABLE;
@@ -56,7 +148,6 @@ int grabNeighborCount(void)
 int grabLocalDeviceInfo(struct _GhnDeviceInfo *deviceInfo)
 {
 	INIT_SDK_VARIABLE;
-	printf("start grabLocalDeviceInfon");
 	memset(deviceInfo, 0x00, sizeof(struct _GhnDeviceInfo));
 
 	if (CMDHelpers_GetStation(bHasDeviceIP,strDeviceIP,bHasAdapterIP,strAdapterIP,
@@ -229,7 +320,7 @@ int restoreFactoryDefault(char *target)
 	return STATUS_CODE_OK;
 }
 
-int getPhyRateTable(struct _PhyRateData *prData)
+int getPhyRate(struct _PhyRateData *prData, char *saMac)
 {
 	INIT_SDK_VARIABLE;
 
@@ -252,7 +343,7 @@ int getPhyRateTable(struct _PhyRateData *prData)
 	memset(prData, 0x00, sizeof(PhyRateData));
 
 	for (y = 1; y <= get_PHY_Rate.getstation.Size; y++) {
-		if (get_PHY_Rate.getstation.sStationArray[y-1].bLocalDevice == TRUE) {
+		if (strcmp(saMac, get_PHY_Rate.getstation.sStationArray[y-1].DeviceMAC) == 0) {
 			strcpy(prData->saMac, get_PHY_Rate.getstation.sStationArray[y-1].DeviceMAC);
 
 			for (x = 1; x <= get_PHY_Rate.getstation.Size; x++) {
