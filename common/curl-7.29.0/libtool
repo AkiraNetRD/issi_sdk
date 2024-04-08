@@ -2,7 +2,7 @@
 
 # libtool - Provide generalized library-building support services.
 # Generated automatically by config.status (curl) -
-# Libtool was configured on host ubuntu-16:
+# Libtool was configured on host parallels-Parallels-Virtual-Platform:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 #
 #   Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005,
@@ -74,13 +74,13 @@ ECHO="printf %s\\n"
 PATH_SEPARATOR=":"
 
 # The host system.
-host_alias=
-host=i686-pc-linux-gnu
+host_alias=aarch64-openwrt-linux
+host=aarch64-openwrt-linux-gnu
 host_os=linux-gnu
 
 # The build system.
 build_alias=
-build=i686-pc-linux-gnu
+build=x86_64-unknown-linux-gnu
 build_os=linux-gnu
 
 # A sed program that does not truncate output.
@@ -99,7 +99,7 @@ EGREP="/bin/grep -E"
 FGREP="/bin/grep -F"
 
 # A BSD- or MS-compatible name lister.
-NM="/usr/bin/nm -B"
+NM="nm"
 
 # Whether we need soft or hard links.
 LN_S="ln -s"
@@ -144,7 +144,7 @@ want_nocaseglob="no"
 sharedlib_from_linklib_cmd="printf %s\\n"
 
 # The archiver.
-AR="ar"
+AR="/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/bin/aarch64-openwrt-linux-ar"
 
 # Flags to create an archive.
 AR_FLAGS="cru"
@@ -164,10 +164,10 @@ old_postuninstall_cmds=""
 lock_old_archive_extraction=no
 
 # A C compiler.
-LTCC="gcc"
+LTCC="/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/bin/aarch64-openwrt-linux-gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-m32 -O2 -Wno-system-headers"
+LTCFLAGS="-O2 -Wno-system-headers"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 \\2 \\2/p' | sed '/ __gnu_lto/d'"
@@ -275,10 +275,10 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/usr/lib/gcc/i686-linux-gnu/5 /usr/lib/i386-linux-gnu /usr/lib /lib/i386-linux-gnu /lib "
+sys_lib_search_path_spec="/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/lib/gcc/aarch64-openwrt-linux-musl/13.1.0 /home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/lib/gcc /home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/aarch64-openwrt-linux-musl/lib "
 
 # Run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/i386-linux-gnu/libfakeroot /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/lib/i386-linux-gnu/mesa-egl /usr/lib/i386-linux-gnu/mesa /usr/local/lib "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/local/lib /usr/local/lib/x86_64-linux-gnu /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /lib32 /usr/lib32 "
 
 # Whether dlopen is supported.
 dlopen_support=unknown
@@ -295,7 +295,7 @@ striplib="strip --strip-unneeded"
 
 
 # The linker used to build libraries.
-LD="/usr/bin/ld"
+LD="/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/aarch64-openwrt-linux-musl/bin/ld"
 
 # How to create reloadable object files.
 reload_flag=" -r"
@@ -305,7 +305,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="gcc"
+CC="/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/bin/aarch64-openwrt-linux-gcc"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes

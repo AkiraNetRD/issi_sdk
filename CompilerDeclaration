@@ -54,6 +54,14 @@ CROSS_DEBUG    =
 ###############################
 # Common Declarations         #
 ###############################
+ARM_ROOT       = /home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl
+CROSS          = $(ARM_ROOT)/bin/aarch64-openwrt-linux-
+CROSS_HOST     = --host=aarch64-openwrt-linux
+CROSS_CFLAGS   = 
+CROSS_CPPFLAGS = -D__alpha
+CROSS_LIBS     = -lrt
+CROSS_DEBUG    =
+
 CC             = $(CROSS)gcc
 AR             = $(CROSS)ar
 ARFLAGS        = rcs
@@ -61,4 +69,3 @@ ARFLAGS        = rcs
 CFLAGS         = $(CROSS_CFLAGS)
 CPPFLAGS       = $(CROSS_CPPFLAGS)
 DEBUG          = $(CROSS_DEBUG)
-

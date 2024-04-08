@@ -18,11 +18,11 @@
 # Compiler tools definitions...
 #
 
-AR		=	/usr/bin/ar
+AR		=	/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/bin/aarch64-openwrt-linux-ar
 ARFLAGS		=	crvs
 ARCHFLAGS	=	
-CC		=	gcc
-CFLAGS		=	$(OPTIM) $(ARCHFLAGS) -Wall -m32  -D_THREAD_SAFE -D_REENTRANT
+CC		=	/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/bin/aarch64-openwrt-linux-gcc
+CFLAGS		=	$(OPTIM) $(ARCHFLAGS) -Wall  -D__alpha -D_THREAD_SAFE -D_REENTRANT
 CP		=	/bin/cp
 DSO		=	:
 DSOFLAGS	=	

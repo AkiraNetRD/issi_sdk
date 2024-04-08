@@ -18,6 +18,6 @@ use vars qw(
     $Cpreprocessor
     );
 
-$Cpreprocessor = 'gcc -E';
+$Cpreprocessor = '/home/parallels/Work/git/akira/openwrt/sdk/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.1.0_musl/bin/aarch64-openwrt-linux-gcc -E -D__alpha';
 
 1;

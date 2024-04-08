@@ -616,7 +616,18 @@ int main(int argc, char* argv[])
 #ifdef _WIN32
 		hThread[i-1] = CreateThread(0,0,ThreadProc,lpParameter,0,&dwThreadID);
 #elif __linux__
-		pThread_iret = pthread_create( &pThread[i-1], NULL, ThreadProc, (void*) lpParameter);
+
+        int ret ,stacksize;
+        pthread_attr_t attr;
+
+        ret = pthread_attr_init(&attr);
+        
+        ret = pthread_attr_getstacksize(&attr, &stacksize);
+        
+        stacksize <<= 2;
+        ret = pthread_attr_setstacksize(&attr, stacksize);
+
+		pThread_iret = pthread_create( &pThread[i-1], &attr, ThreadProc, (void*) lpParameter);
 		if (pThread_iret != 0)
 		{
 			printf("pthread_create() failed!\n");
@@ -813,7 +824,18 @@ int main(int argc, char* argv[])
 #ifdef _WIN32
 			hThread[i-1] = CreateThread(0,0,ThreadProc,lpParameter,0,&dwThreadID);
 #elif __linux__
-			pThread_iret = pthread_create( &pThread[i-1], NULL, ThreadProc, (void*) lpParameter);
+
+        int ret ,stacksize;
+        pthread_attr_t attr;
+
+        ret = pthread_attr_init(&attr);
+        
+        ret = pthread_attr_getstacksize(&attr, &stacksize);
+        
+        stacksize <<= 2;
+        ret = pthread_attr_setstacksize(&attr, stacksize);
+
+			pThread_iret = pthread_create( &pThread[i-1], &attr, ThreadProc, (void*) lpParameter);
 			if (pThread_iret != 0)
 			{
 				printf("pthread_create() failed!\n");
@@ -1090,7 +1112,18 @@ int main(int argc, char* argv[])
 #ifdef _WIN32
 			hThread[i-1] = CreateThread(0,0,ThreadProc,lpParameter,0,&dwThreadID);
 #elif __linux__
-			pThread_iret = pthread_create( &pThread[i-1], NULL, ThreadProc, (void*) lpParameter);
+
+        int ret ,stacksize;
+        pthread_attr_t attr;
+
+        ret = pthread_attr_init(&attr);
+        
+        ret = pthread_attr_getstacksize(&attr, &stacksize);
+        
+        stacksize <<= 2;
+        ret = pthread_attr_setstacksize(&attr, stacksize);
+
+			pThread_iret = pthread_create( &pThread[i-1], &attr, ThreadProc, (void*) lpParameter);
 			if (pThread_iret != 0)
 			{
 				printf("pthread_create() failed!\n");

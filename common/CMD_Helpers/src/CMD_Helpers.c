@@ -35,34 +35,45 @@
 ***************************************************************************************************/
 bool Select_Local_Adapter(sAdapter_Information* adapter, char* strAdapterIP)
 {
-	int			i;
-	int			idx = 0x00;
-
-	printf("\n");
-
-	if (adapter->Size >= 2)
-	{
-		for (i=1 ; i <= (int)adapter->Size ; i++)
-		{
-			printf("%d) %-15s\t(%s)\n",
-				i-1,
-				adapter->Array[i-1].IP,
-				adapter->Array[i-1].Description);
-		}
-
-		do 
-		{
-			printf("\nPlease select a network adapter: ");
-			idx = read_int();
-		}
-		while (idx<0 || idx>=(int)adapter->Size);
-
-		fprintf(stdout,"using network adapter %s\n", adapter->Array[idx].IP);
+	if (adapter->Size >= 1) {
+		// always use first one
+		strcpy(strAdapterIP,adapter->Array[0].IP);
+		
+		return TRUE;
 	}
 
-	strcpy(strAdapterIP,adapter->Array[idx].IP);
+	return FALSE;
 
-	return TRUE;
+	
+
+	// int			i;
+	// int			idx = 0x00;
+
+	// printf("\n");
+
+	// if (adapter->Size >= 2)
+	// {
+	// 	for (i=1 ; i <= (int)adapter->Size ; i++)
+	// 	{
+	// 		printf("%d) %-15s\t(%s)\n",
+	// 			i-1,
+	// 			adapter->Array[i-1].IP,
+	// 			adapter->Array[i-1].Description);
+	// 	}
+
+	// 	do 
+	// 	{
+	// 		printf("\nPlease select a network adapter: ");
+	// 		idx = read_int();
+	// 	}
+	// 	while (idx<0 || idx>=(int)adapter->Size);
+
+	// 	fprintf(stdout,"using network adapter %s\n", adapter->Array[idx].IP);
+	// }
+
+	// strcpy(strAdapterIP,adapter->Array[idx].IP);
+
+	// return TRUE;
 }
 
 /***************************************************************************************************
