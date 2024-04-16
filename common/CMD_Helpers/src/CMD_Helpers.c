@@ -81,37 +81,40 @@ bool Select_Local_Adapter(sAdapter_Information* adapter, char* strAdapterIP)
 ***************************************************************************************************/
 bool Select_Local_Device(sGet_Local_Devices_Information* localdevices, char* strDeviceMAC, char* strDeviceIP, char* strDeviceState)
 {
-	int			i;
+	// int			i;
 	int			idx = 0x00;
 
-	if (localdevices->Size >= 2)
-	{
-		for (i=1 ; i <= (int)localdevices->Size ; i++)
-		{
-			printf("%d) MAC=%s IP=%s STATE=%s\n",
-				i-1,
-				localdevices->sStationArray[i-1].DeviceMAC,
-				localdevices->sStationArray[i-1].DeviceIP,
-				localdevices->sStationArray[i-1].DeviceState);
-		}
+	// if (localdevices->Size >= 2)
+	// {
+	// 	for (i=1 ; i <= (int)localdevices->Size ; i++)
+	// 	{
+	// 		printf("%d) MAC=%s IP=%s STATE=%s\n",
+	// 			i-1,
+	// 			localdevices->sStationArray[i-1].DeviceMAC,
+	// 			localdevices->sStationArray[i-1].DeviceIP,
+	// 			localdevices->sStationArray[i-1].DeviceState);
+	// 	}
 
-		do 
-		{
-			printf("\nPlease select local device: ");
-			idx = read_int();
-		}
-		while (idx<0 || idx>=(int)localdevices->Size);
+	// 	do 
+	// 	{
+	// 		printf("\nPlease select local device: ");
+	// 		idx = read_int();
+	// 	}
+	// 	while (idx<0 || idx>=(int)localdevices->Size);
 
-		fprintf(stdout,"using local-device %s with IP=%s\n", 
-			localdevices->sStationArray[idx].DeviceMAC,
-			localdevices->sStationArray[idx].DeviceIP);
+	// 	fprintf(stdout,"using local-device %s with IP=%s\n", 
+	// 		localdevices->sStationArray[idx].DeviceMAC,
+	// 		localdevices->sStationArray[idx].DeviceIP);
+	// }
+
+	if (localdevices->Size >= 1) {
+		strcpy(strDeviceMAC,localdevices->sStationArray[idx].DeviceMAC);
+		strcpy(strDeviceIP,localdevices->sStationArray[idx].DeviceIP);
+		strcpy(strDeviceState,localdevices->sStationArray[idx].DeviceState);
+		return TRUE;
 	}
 
-	strcpy(strDeviceMAC,localdevices->sStationArray[idx].DeviceMAC);
-	strcpy(strDeviceIP,localdevices->sStationArray[idx].DeviceIP);
-	strcpy(strDeviceState,localdevices->sStationArray[idx].DeviceState);
-
-	return TRUE;
+	return FALSE;
 }
 
 /***************************************************************************************************
